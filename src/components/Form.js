@@ -2,9 +2,10 @@ import React from "react";
 import { useDispatch } from "react-redux";
 import { editTodo,addTodo } from "../redux/todoSlice";
 
-const Form = ({ text, settext, active, setactive }) => {
+const Form = ({ text, settext, active, setactive,validate,setvalidate }) => {
   const dispatch = useDispatch();
   const changeHandler = (e) => {
+    setvalidate(true);
     settext(e.target.value);
   };
   const submitHandler = (e) => {
@@ -29,7 +30,7 @@ const Form = ({ text, settext, active, setactive }) => {
     <form>
       <input onChange={changeHandler} type="text" value={text} />
       <button onClick={submitHandler}>
-        {!active.status ? "Add Todo" : "Edit Todo"}
+        {!active.status? "Add Todo" : "Edit Todo"}
       </button>
     </form>
   );

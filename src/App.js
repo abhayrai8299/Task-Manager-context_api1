@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState} from "react";
 import "./App.css";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
@@ -6,7 +6,8 @@ import { useSelector } from "react-redux";
 function App() {
   const [text, settext] = useState("");
   const [active, setactive] = useState({id:"",status:false});
-  const todoitems = useSelector((state) =>state.todoReducer.todolist);              
+  const [validate, setvalidate] = useState(false);
+  const todoitems = useSelector((state) =>state.todoReducer.todolist);        
 
   return (
     <div className="App">
@@ -18,7 +19,9 @@ function App() {
         settext={settext} 
         todoitems={todoitems}           //todoitems=Array Item Listing
         active={active}                 //active=states with id
-        setactive={setactive}           //setactive=states with id
+        setactive={setactive} 
+        validate={validate}
+        setvalidate={setvalidate}          //setactive=states with id
       />
       <TodoList
         settext={settext}
