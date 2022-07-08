@@ -1,42 +1,34 @@
-import React from "react";
-import { useDispatch } from "react-redux";
-import { editTodo,addTodo } from "../redux/todoSlice";
+import React,{ useContext} from "react";
+import { TaskListContext } from "../context/TaskListContext";
+const Form = () => {
+  const {addTask,title,setTitle,editItem,editTask,active,setactive} = useContext(TaskListContext);
 
-const Form = ({ text, settext, active, setactive,validate,setvalidate }) => {
-  const dispatch = useDispatch();
+
   const changeHandler = (e) => {
-    setvalidate(true);
-    settext(e.target.value);
+     setTitle(e.target.value)
+  
   };
   const submitHandler = (e) => {
+    
     e.preventDefault();
-    if(validate===false)          
+    if(title==="")
     {
       alert("Please add a Todo")
     }
-    else if(active.status)
+    else
     {
-      dispatch(
-        editTodo({
-          text:text,id:active.id  
-        })  
-      )
+    addTask(title);
+    setTitle("");
+    editTask(title,editItem.id,editItem.date);
+    setactive(false)
+    
     }
-    else{
-    dispatch(
-      addTodo({
-        text: text,
-      }));} 
-    setactive({id:"",status:false});
-    settext("");
-    setvalidate(false)
+
   };
   return (
-    <form>
-      <input onChange={changeHandler} type="text" value={text} />
-      <button onClick={submitHandler}>
-        {!active.status? "Add Todo"  : "Edit Todo"}
-      </button>
+    <form onSubmit={submitHandler}>
+      <input onChange={changeHandler} type="text" value={title} />
+      <button >{active===false?"Add Todo":"Edit Todo"}</button>
     </form>
   );
 };

@@ -1,35 +1,19 @@
-import React, { useState} from "react";
+import React from "react";
 import "./App.css";
 import Form from "./components/Form";
 import TodoList from "./components/TodoList";
-import { useSelector } from "react-redux";
+import TaskListContextProvider from "./context/TaskListContext";
 function App() {
-  const [text, settext] = useState("");
-  const [active, setactive] = useState({id:"",status:false});
-  const [validate, setvalidate] = useState(false);
-  const todoitems = useSelector((state) =>state.todoReducer.todolist);        
-
   return (
-    <div className="App">
-      <header>
-        <h1>Todo Manager</h1>
-      </header>
-      <Form
-        text={text}                     
-        settext={settext} 
-        todoitems={todoitems}           //todoitems=Array Item Listing
-        active={active}                 //active=states with id
-        setactive={setactive} 
-        validate={validate}
-        setvalidate={setvalidate}          //setactive=states with id
-      />
-      <TodoList
-        settext={settext}
-        text={text}
-        todoitems={todoitems}
-        setactive={setactive}            //setactive=states with id
-      />
-    </div>
+    <TaskListContextProvider>
+      <div>
+        <header>
+           <h1>Task Manager</h1>
+        </header>
+        <Form/>
+        <TodoList />
+      </div>
+    </TaskListContextProvider>
   );
 }
 
