@@ -10,12 +10,16 @@ const Form = ({ text, settext, active, setactive,validate,setvalidate }) => {
   };
   const submitHandler = (e) => {
     e.preventDefault();
-    if(active.status)
+    if(validate===false)          
+    {
+      alert("Please add a Todo")
+    }
+    else if(active.status)
     {
       dispatch(
         editTodo({
-          text:text,id:active.id
-        })
+          text:text,id:active.id  
+        })  
       )
     }
     else{
@@ -25,12 +29,13 @@ const Form = ({ text, settext, active, setactive,validate,setvalidate }) => {
       }));} 
     setactive({id:"",status:false});
     settext("");
+    setvalidate(false)
   };
   return (
     <form>
       <input onChange={changeHandler} type="text" value={text} />
       <button onClick={submitHandler}>
-        {!active.status? "Add Todo" : "Edit Todo"}
+        {!active.status? "Add Todo"  : "Edit Todo"}
       </button>
     </form>
   );

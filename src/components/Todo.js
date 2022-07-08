@@ -2,7 +2,7 @@ import React from "react";
 import { editTodo, deleteTodo } from "../redux/todoSlice";
 import { useDispatch } from "react-redux";
 
-const Todo = ({todoitems,settext,setactive }) => {
+const Todo = ({todoitems,text,settext,setactive }) => {
   const dispatch = useDispatch();
 
   const deleteHandler = (id) => {

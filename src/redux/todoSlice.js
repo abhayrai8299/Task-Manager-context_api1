@@ -21,6 +21,12 @@ export const todoSlice = createSlice({
     },
     editTodo: (state, action) => {
       // Edit
+     if(action.payload.text==="")
+     {
+      alert("Please add a Todo")
+     }
+     else
+     {
       const list = state.todolist.map((item) => {
         if (item.id === action.payload.id) {
           return { id: action.payload.id, title: action.payload.text };
@@ -29,6 +35,7 @@ export const todoSlice = createSlice({
         }
       });
       state.todolist = list;
+    }
     },
   },
 });

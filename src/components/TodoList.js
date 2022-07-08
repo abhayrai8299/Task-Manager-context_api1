@@ -2,7 +2,7 @@ import React from "react";
 import Todo from "./Todo";
 import "../App.css";
 
-const TodoList = ({ todoitems,settext, setactive }) => {
+const TodoList = ({ todoitems,text,settext, setactive }) => {
   return (
     <div>
       <ul>
@@ -10,6 +10,7 @@ const TodoList = ({ todoitems,settext, setactive }) => {
           <Todo
             todoitems={items}
             settext={settext}
+            text={text}
             setactive={setactive}
           />
         ))}

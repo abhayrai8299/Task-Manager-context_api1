@@ -25,6 +25,7 @@ function App() {
       />
       <TodoList
         settext={settext}
+        text={text}
         todoitems={todoitems}
         setactive={setactive}            //setactive=states with id
       />
